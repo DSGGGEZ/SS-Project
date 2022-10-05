@@ -2,7 +2,9 @@ const UserController = require('./controllers/UserController.js');
 const UserAuthenController = require('./controllers/UserAuthenController');
 const isAuthenController = require('./authen/isAuthenController')
 const BlogController = require('./controllers/BlogController');
+const CafeController = require('./controllers/CafeController');
 const Blog = require('./models/Blog.js');
+const Cafe = require('./models/Cafe.js');
 
 let multer = require("multer")
 
@@ -32,6 +34,38 @@ module.exports = (app) => {
     app.delete('/blog/:blogId', BlogController.remove)
     app.get('/blog/:blogId', BlogController.show)
     app.get('/blogs', BlogController.index)
+    app.post('/upload', function (req, res) {
+        upload(req, res, function (err) {
+            // isUserAuthenicated,
+            if (err) {
+                return res.end("Error uploading file.")
+            }
+            res.end("File is uploaded")
+        })
+    })
+    app.post('/upload/delete', async function (req, res) {
+        try {
+            const fs = require('fs');
+            console.log(req.body.filename)
+            fs.unlink(process.cwd() + '/public/uploads/' + req.body.filename,
+                (err) => {
+                    if (err) throw err;
+                    res.send("Delete sucessful")
+                    // console.log('successfully deleted material file');
+                });
+        } catch (err) {
+            res.status(500).send({
+                error: 'An error has occured trying to delete file the material'
+            })
+        }
+
+    })
+    //cafe
+    app.post('/cafe', CafeController.create)
+    app.put('/cafe/:cafeId', CafeController.put)
+    app.delete('/cafe/:cafeId', CafeController.remove)
+    app.get('/cafe/:cafeId', CafeController.show)
+    app.get('/cafes', CafeController.index)
     app.post('/upload', function (req, res) {
         upload(req, res, function (err) {
             // isUserAuthenicated,
