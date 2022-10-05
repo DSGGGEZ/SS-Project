@@ -2,7 +2,7 @@
   <div>
     <h1>Create Cafe</h1>
     <form v-on:submit.prevent="createCafe">
-      <p>title: <input type="text" v-model="cafe.cafename" /></p>
+      <p>Cafename: <input type="text" v-model="cafe.cafename" /></p>
       <transition name="fade">
 		<div class="thumbnail-pic" v-if="cafe.thumbnail != 'null'">
 			<img :src="BASE_URL + cafe.thumbnail" alt="thumbnail" />
@@ -57,7 +57,7 @@
       </p>
 
       <p>Theme: <input type="text" v-model="cafe.theme" /></p>
-      <p>status: <input type="text" v-model="cafe.status" /></p>
+      <p>Status: <input type="text" v-model="cafe.status" /></p>
       <p><button type="submit">create cafe</button></p>
     </form>
   </div>
