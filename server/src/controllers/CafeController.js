@@ -3,11 +3,31 @@ module.exports = {
     // get all cafe
     async index(req, res) {
         try {
-            const cafe = await Cafe.findAll()
-            res.send(cafe)
+            let cafes = null
+            const search = req.query.search
+            // console.log('search key: ' + search)
+            if (search) {
+                cafes = await Cafe.findAll({
+                    where: {
+                        $or: [
+                            'title', 'content', 'category'
+                        ].map(key => ({
+                            [key]: {
+                                $like: `%${search}%`,
+                            }
+                        })),
+                    },
+                    order: [['updatedAt', 'DESC']]
+                })
+            } else {
+                cafes = await Cafe.findAll({
+                    order: [['updatedAt', 'DESC']]
+                })
+            }
+            res.send(cafes)
         } catch (err) {
             res.status(500).send({
-                error: 'The cafes information was incorrect'
+                error: 'an error has occured trying to fetch the cafes'
             })
         }
     },
@@ -38,9 +58,9 @@ module.exports = {
             })
         }
     },
-    
-// delete cafe
-async remove(req, res) {
+
+    // delete cafe
+    async remove(req, res) {
         try {
             const cafe = await Cafe.findOne({
                 where: {

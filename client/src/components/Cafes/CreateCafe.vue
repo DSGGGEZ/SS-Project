@@ -301,20 +301,6 @@ export default {
   created() {
     this.reset();
   },
-  computed: {
-    isInitial() {
-      return this.currentStatus === STATUS_INITIAL;
-    },
-    isSaving() {
-      return this.currentStatus === STATUS_SAVING;
-    },
-    isSuccess() {
-      return this.currentStatus === STATUS_SUCCESS;
-    },
-    isFailed() {
-      return this.currentStatus === STATUS_FAILED;
-    },
-  },
   components: {
     VueCkeditor,
   },

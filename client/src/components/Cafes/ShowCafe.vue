@@ -4,17 +4,20 @@
 		<p>id: {{ cafe.id }}</p>
 		<p>Cafename: {{ cafe.cafename }}</p>
 		<p>content: {{ cafe.content }}</p>
-		<p>Theme: {{ cafe.category }}</p>
+		<p>Colortone: {{ cafe.colortone }}</p>
 		<p>status: {{ cafe.status }}</p>
 		<p>
-			<button v-on:click="navigateTo('/cafe/edit/' + cafe.id)">
-				แก้ไข cafe
+			<button v-on:click="navigateTo('/cafe/edit/' + cafe.id)" class="btn btn-success">
+				Edit cafe
 			</button>
-			<button v-on:click="navigateTo('/cafes')">กลับ</button>
+			<button v-on:click="navigateTo('/cafes')" class="btn btn-warning">Back</button>
 		</p>
 	</div>
 </template>
 <script>
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'jquery/src/jquery.js'
+import 'bootstrap/dist/js/bootstrap.min.js'
 import CafeService from "@/services/CafeService";
 export default {
 	data() {

@@ -13,7 +13,7 @@
 						filesChange($event.target.name, $event.target.files);
 						fileCount = $event.target.files.length;
 					"
-					accept="image/*"
+					accept="image src=*"
 					class="input-file"
 				/>
 				<!-- <p v-if="isInitial || isSuccess"> -->

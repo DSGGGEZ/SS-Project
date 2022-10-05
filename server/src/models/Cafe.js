@@ -4,7 +4,7 @@ module.exports = ( sequelize, DataTypes ) => {
         thumbnail: DataTypes.STRING,
         pictures: DataTypes.STRING,
         content: DataTypes.TEXT,
-        theme: DataTypes.STRING,
+        colortone: DataTypes.STRING,
         status: DataTypes.STRING,
     })
     return Cafe

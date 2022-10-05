@@ -1,9 +1,13 @@
 import Api from '@/services/Api'
 
 export default {
-    index() {
-        return Api().get('cafes')
-    },
+    index (search) { 
+        return Api().get('cafes', {
+        params: {
+        search: search
+        }
+        })
+       },
     show(cafeId){
         return Api().get('cafe/'+cafeId)
     },

@@ -3,11 +3,31 @@ module.exports = {
     // get all blog
     async index(req, res) {
         try {
-            const blogs = await Blog.findAll()
+            let blogs = null
+            const search = req.query.search
+            // console.log('search key: ' + search)
+            if (search) {
+                blogs = await Blog.findAll({
+                    where: {
+                        $or: [
+                            'title', 'content', 'category'
+                        ].map(key => ({
+                            [key]: {
+                                $like: `%${search}%`,
+                            }
+                        })),
+                    },
+                    order: [['updatedAt', 'DESC']]
+                })
+            } else {
+                blogs = await Blog.findAll({
+                    order: [['updatedAt', 'DESC']]
+                })
+            }
             res.send(blogs)
         } catch (err) {
             res.status(500).send({
-                error: 'The blogs information was incorrect'
+                error: 'an error has occured trying to fetch the blogs'
             })
         }
     },
@@ -38,9 +58,9 @@ module.exports = {
             })
         }
     },
-    
-// delete blog
-async remove(req, res) {
+
+    // delete blog
+    async remove(req, res) {
         try {
             const blog = await Blog.findOne({
                 where: {
