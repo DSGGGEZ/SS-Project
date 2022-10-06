@@ -13,6 +13,11 @@ import BlogCreate from '@/components/Blogs/CreateBlog'
 import BlogEdit from '@/components/Blogs/EditBlog'
 import BlogShow from '@/components/Blogs/ShowBlog'
 
+import PlaceIndex from '@/components/Place/Index'
+import PlaceCreate from '@/components/Place/CreatePlace'
+import PlaceEdit from '@/components/Place/EditPlace'
+import PlaceShow from '@/components/Place/ShowPlace'
+
 import CommentIndex from '@/components/Comments/Index'
 
 import Upload from '@/components/Utils/Upload'
@@ -47,6 +52,7 @@ export default new Router({
       name: 'login',
       component: Login
     },
+    //blog
     {
       path: '/blogs',
       name: 'blogs',
@@ -65,6 +71,26 @@ export default new Router({
       path: '/blog/:blogId',
       name: 'blog',
       component: BlogShow
+    },
+    //Place
+    {
+      path: '/places',
+      name: 'places',
+      component: PlaceIndex
+    },
+    {
+      path: '/place/create',
+      name: 'place-create',
+      component: PlaceCreate
+    },{
+      path: '/place/edit/:placeId',
+      name: 'place-edit',
+      component: PlaceEdit
+    },
+    {
+      path: '/place/:placeId',
+      name: 'place',
+      component: PlaceShow
     },
     {
       path: '/comments',

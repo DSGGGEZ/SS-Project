@@ -5,9 +5,10 @@
       <div v-if="users.length">
         <p class="h4">จำนวนผู้ใช้งาน {{ users.length }}</p>
         <p>
-          <button v-on:click="navigateTo('/user/create')" class="btn btn-success">
+          <button v-on:click="navigateTo('/user/create')" class="btn btn-success pull-left">
             สร้างผู้ใช้งาน
           </button>
+          <button v-on:click="logout" class="btn btn-danger pull-right" style="margin-left:910px">Logout</button>
         </p>
         <div v-for="user in users" v-bind:key="user.id" class="text-inbox box">
           <dl class="row">
@@ -18,14 +19,17 @@
             <dt class="col-sm-3"> Password</dt>
             <dd class="col-sm-9">{{ user.password }} </dd></dl>
             <button v-on:click="navigateTo('/user/' + user.id)" class="btn btn-info btn-lg">
-              Viwe
+              View
+            </button>
+            <button v-on:click="navigateTo('/user/edit/' + user.id)" class="btn btn-warning btn-lg">
+              Edit
             </button>
             <button v-on:click="deleteUser(user)" class ="btn bg-danger btn-info btn-lg ">
-              Delet
+              Delete
             </button>
           <hr />
         </div>
-        <p><button v-on:click="logout">Logout</button></p>
+        
       </div>
     </form>
   </div>

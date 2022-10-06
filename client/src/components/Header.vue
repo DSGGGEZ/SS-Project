@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark container header">
-    <router-link :to="{ name: 'blogs' }" class="navbar-brand">
+    <router-link :to="{ name: 'places' }" class="navbar-brand">
       <h1>Cafe</h1>
     </router-link>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -17,17 +17,27 @@
       <form class="form-inline my-2 my-lg-0">
         <router-link :to="{ name: 'login' }" class="btn btn-outline-success my-2 my-sm-0" type="submit">Login
         </router-link>
+        &nbsp;
       </form>
     </div>
   </nav>
 </template>
+
 
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'jquery/src/jquery.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
 export default {
-  name: 'app'
+  name: 'app',
+  logout() {
+      this.$store.dispatch('setToken', null)
+      this.$store.dispatch('setUser', null)
+
+      this.$router.push({
+        name: 'login'
+      })
+    }
 };
 
 </script>
