@@ -2,7 +2,7 @@
   <div class="container createcafe box">
     <p class="h1">Create Cafe</p>
     <form v-on:submit.prevent="createPlace">
-      <label>Title</label>
+      <label>PlaceName</label>
       <input type="text" v-model="place.placename" />
       <transition name="fade">
         <div class="thumbnail-pic" v-if="place.thumbnail != 'null'">

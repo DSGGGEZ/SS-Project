@@ -12,7 +12,6 @@
         <li class="nav-item">
           <router-link :to="{ name: 'users' }" class="nav-link">User</router-link>
         </li>
-        <router-link :to="{ name: 'comments' }" class="nav-link">Comments</router-link>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <router-link :to="{ name: 'login' }" class="btn btn-outline-success my-2 my-sm-0" type="submit">Login

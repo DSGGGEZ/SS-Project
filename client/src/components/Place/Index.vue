@@ -27,9 +27,10 @@
 					<!-- </transition> -->
 				</div>
 				<h3>{{ place.placename }}</h3>
-				<div v-html="place.content.slice(0,200) + '...'"></div>
+				
 				<div class="blog-info">
 					<p><strong>Colortone:</strong> {{ place.theme }}</p>
+					<p><strong>Status:</strong> {{ place.status }}</p>
 					<p><strong>Create:</strong> {{ place.createdAt }}</p>
 					<!-- <p>status: {{ blog.status }}</p> -->
 					<p>
