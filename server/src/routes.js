@@ -2,9 +2,7 @@ const UserController = require('./controllers/UserController.js');
 const UserAuthenController = require('./controllers/UserAuthenController');
 const isAuthenController = require('./authen/isAuthenController')
 const BlogController = require('./controllers/BlogController');
-const CafeController = require('./controllers/CafeController');
 const Blog = require('./models/Blog.js');
-const Cafe = require('./models/Cafe.js');
 
 let multer = require("multer")
 
@@ -29,18 +27,11 @@ module.exports = (app) => {
     app.get('/user/:userId', UserController.show)
     app.get('/users', isAuthenController, UserController.index)
     app.post('/login', UserAuthenController.login)
-    //blog
     app.post('/blog', BlogController.create)
     app.put('/blog/:blogId', BlogController.put)
     app.delete('/blog/:blogId', BlogController.remove)
     app.get('/blog/:blogId', BlogController.show)
     app.get('/blogs', BlogController.index)
-    //cafe
-    app.post('/cafe', CafeController.create)
-    app.put('/cafe/:cafeId', CafeController.put)
-    app.delete('/cafe/:cafeId', CafeController.remove)
-    app.get('/cafe/:cafeId', CafeController.show)
-    app.get('/cafes', CafeController.index)
     app.post('/upload', function (req, res) {
         upload(req, res, function (err) {
             // isUserAuthenicated,

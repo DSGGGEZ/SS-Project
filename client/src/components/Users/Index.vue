@@ -1,15 +1,15 @@
 <template>
-  <div class="container blog-header">
-    <h2>Users</h2>
+  <div class="container createcafe box">
+    <p class="h2">Users</p>
     <form class="form-inline form-search">
       <div v-if="users.length">
-        <h4 class="h4">จำนวนผู้ใช้งาน {{ users.length }}</h4>
+        <p class="h4">จำนวนผู้ใช้งาน {{ users.length }}</p>
         <p>
           <button v-on:click="navigateTo('/user/create')" class="btn btn-success">
-            Create User
+            สร้างผู้ใช้งาน
           </button>
         </p>
-        <div v-for="user in users" v-bind:key="user.id" class="text-inbox ">
+        <div v-for="user in users" v-bind:key="user.id" class="text-inbox box">
           <dl class="row">
             <dt class="col-sm-3"> ชื่อ-นามสกุล</dt>
             <dd class="col-sm-9">{{ user.name }} - {{ user.lastname }} </dd>
@@ -18,13 +18,10 @@
             <dt class="col-sm-3"> Password</dt>
             <dd class="col-sm-9">{{ user.password }} </dd></dl>
             <button v-on:click="navigateTo('/user/' + user.id)" class="btn btn-info btn-lg">
-              View
-            </button>
-            <button v-on:click="navigateTo('/user/edit/' + user.id)" class=" btn bg-warning btn-info btn-lg">
-              Edit
+              Viwe
             </button>
             <button v-on:click="deleteUser(user)" class ="btn bg-danger btn-info btn-lg ">
-              Delete
+              Delet
             </button>
           <hr />
         </div>
@@ -89,11 +86,16 @@ export default {
 .text-inbox{  
   border: 5px solid lightblue;
   padding: 50px;
-  margin: 20px;
 }
-.center {
-  margin: auto;
-  border: 3px solid #73AD21;
+.createcafe{
+	margin: 10px;
+	margin-top: 10px;
+	margin-left: 100px;
+}
+.center{
+	text-align: center;
+	}
+.box{
   padding: 10px;
 }
 </style>

@@ -1,31 +1,23 @@
 <template>
-	<div class="container">
+	<div class="container createcafe">
 		<div class="blog-header">
-			<h2>Blog</h2>
+			<p class="h1">Cafe Phitsanulok</p>
 			<div>
 				<form class="form-inline form-search">
 					<div class="form-group">
 						<div class="input-group">
-							<input type="text" v-model="search" class="form-control" id="exampleInputAmount"
-								placeholder="Search">
 							<div class="input-group-addon"><i class="fas fa-search"></i></div>
 						</div>
 					</div>
 				</form>
 			</div>
-			<div class="create-blog">
-				<button class="btn btn-success btn-sm" v-on:click="navigateTo('/blog/create')">Create blog</button>
-				<strong> blog number: </strong> {{results.length}}
+				<div class="create-blog ">
+				<button class="btn btn-success btn-sm sizetext" v-on:click="navigateTo('/blog/create')"><p class="h5">Create Cafe</p></button>
+				<strong><p class="h6" >Cafe list:  {{results.length}}</p></strong>
 			</div>
-			<ul class="categories">
-				<li v-for="cate in category" v-bind:key="cate.index"><a v-on:click.prevent="setCategory(cate)"
-						href="#">{{ cate }}</a></li>
-				<li class="clear"><a v-on:click.prevent="setCategory(' ')" href="#">Clear</a></li>
-			</ul>
-			<div class="clearfix"></div>
 		</div>
 		<transition-group name="fade">
-			<div v-for="blog in blogs" v-bind:key="blog.id" class="blog-list">
+			<div v-for="blog in blogs" v-bind:key="blog.id" class="blog-list box cafe">
 				<!-- <p>id: {{ blog.id }}</p> -->
 				<div class="blog-pic">
 					<!-- <transition name="fade"> -->
@@ -37,7 +29,7 @@
 				<h3>{{ blog.title }}</h3>
 				<div v-html="blog.content.slice(0,200) + '...'"></div>
 				<div class="blog-info">
-					<p><strong>Category:</strong> {{ blog.category }}</p>
+					<p><strong>Colortone:</strong> {{ blog.category }}</p>
 					<p><strong>Create:</strong> {{ blog.createdAt }}</p>
 					<!-- <p>status: {{ blog.status }}</p> -->
 					<p>
@@ -45,7 +37,7 @@
 							Blog</button>
 						<button class="btn btn-sm btn-warning" v-on:click="navigateTo('/blog/edit/'+ blog.id)">Edit
 							blog</button>
-						<button class="btn btn-sm btn-danger" v-n:click="deleteBlog(blog)">Delete</button>
+						<button class="btn btn-sm btn-danger" v-on:click="deleteBlog(blog)">Delete</button>
 					</p>
 				</div>
 				<div class="clearfix"></div>
@@ -56,7 +48,7 @@
 		</div>
 		<div id="blog-list-bottom">
 			<div class="blog-load-finished" v-if="blogs.length === 
-			results.length && results.length > 0">โหลดข้อมูลครบแล้ว</div>
+			results.length && results.length > 0">.The cafe information is complete.</div>
 		</div>
 	</div>
 </template>
@@ -67,6 +59,7 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import BlogsService from '@/services/BlogsService'
 import _ from 'lodash'
 import ScrollMonitor from 'scrollMonitor'
+import Blog from '../../../../server/src/models/Blog'
 let LOAD_NUM = 3
 let pageWatcher
 export default {
@@ -158,7 +151,17 @@ export default {
 				this.search = keyword
 			}
 		},
-	},
+		async deleteBlog(blog) {
+			let result = confirm("Want to delete?");
+			if (result) {
+				try {
+					await BlogsService.delete(blog);
+					this.refreshData();
+				} catch (err) {
+					console.log(err);
+				}
+			}
+		},
 	updated() {
 		let sens = document.querySelector('#blog-list-bottom')
 		pageWatcher = ScrollMonitor.create(sens)
@@ -171,6 +174,7 @@ export default {
 		}
 	}
 }
+}
 </script>
 <style scoped>
 .empty-blog {
@@ -180,13 +184,21 @@ export default {
 	background: darksalmon;
 	color: white;
 }
+.h6{
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
 
 /* thumbnail */
 .thumbnail-pic img {
 	width: 200px;
 	padding: 5px 10px 0px 0px;
 }
-
+.createcafe{
+	margin: 10px;
+	margin-top: 10px;
+	margin-left: 100px;
+}
 .blog-info {
 	float: left;
 }
@@ -249,6 +261,14 @@ export default {
 }
 
 .create-blog {
+	margin-top: 10px;
+}
+.box{
+  padding: 5px;
+  border: 2px solid gray;
+
+}
+.cafe{
 	margin-top: 10px;
 }
 </style>

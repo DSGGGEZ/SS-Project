@@ -1,13 +1,13 @@
 <template>
- <div class="container">
+ <div class="container createcafe box">
 		<div class="blog-header">
-    <h3>User Login</h3>
+    <p class="h2 button">User Login</p>
     <form v-on:submit.prevent="onLogin" action="/action_page.php">
       <label for="email">Email</label>
        <input type="text" id="email" name="email" placeholder="Your Email" v-model="email" />
        <label for="password">Password</label>
        <input type="password" v-model="password"  id="Pw" name="Password" placeholder="Enter your password"/>
-      <button type="submit" class ="btn btn-success">Login</button>
+      <button type="submit" class ="btn btn-success createuser">Login</button>
       <div class="error" v-if="error">{{error}}</div>
     </form>
   </div>
@@ -95,4 +95,24 @@ div {
   .error{
     color:red;
   }
+  .createcafe{
+	margin: 10px;
+	margin-top: 10px;
+	margin-left: 100px;
+}
+.center{
+	text-align: center;
+	}
+.box{
+  padding: 10px;
+}
+.createuser{
+    margin-top: 20px;
+}
+.button{
+  margin-bottom: 25px;
+}
+label{
+  font-size: 20px;
+}
 </style>

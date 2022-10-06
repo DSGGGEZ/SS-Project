@@ -1,27 +1,20 @@
 <template>
-  <div>
-    <h1>Create Blog</h1>
+  <div class="container createcafe box">
+    <p class="h1">Create Cafe</p>
     <form v-on:submit.prevent="createBlog">
-      <p>title: <input type="text" v-model="blog.title" /></p>
+      <label>Title</label>
+      <input type="text" v-model="blog.title" />
       <transition name="fade">
-		<div class="thumbnail-pic" v-if="blog.thumbnail != 'null'">
-			<img :src="BASE_URL + blog.thumbnail" alt="thumbnail" />
-		</div>
-	  </transition>
+        <div class="thumbnail-pic" v-if="blog.thumbnail != 'null'">
+          <img :src="BASE_URL + blog.thumbnail" alt="thumbnail" />
+        </div>
+      </transition>
       <form enctype="multipart/form-data" novalidate>
         <div class="dropbox">
-          <input
-            type="file"
-            multiple
-            :name="uploadFieldName"
-            :disabled="isSaving"
-            @change="
-              filesChange($event.target.name, $event.target.files);
-              fileCount = $event.target.files.length;
-            "
-            accept="image/*"
-            class="input-file"
-          />
+          <input type="file" multiple :name="uploadFieldName" :disabled="isSaving" @change="
+            filesChange($event.target.name, $event.target.files);
+            fileCount = $event.target.files.length;
+          " accept="image/*" class="input-file" />
           <!-- <p v-if="isInitial || isSuccess"> -->
           <p v-if="isInitial">
             Drag your file(s) here to begin<br />
@@ -34,31 +27,25 @@
         <div>
           <ul class="pictures">
             <li v-for="picture in pictures" v-bind:key="picture.id">
-              <img
-                style="margin-bottom: 5px"
-                :src="BASE_URL + picture.name"
-                alt="picture image"
-              />
+              <img style="margin-bottom: 5px" :src="BASE_URL + picture.name" alt="picture image" />
               <button v-on:click.prevent="delFile(picture)">Delete</button>
-			  <button v-on:click.prevent="useThumbnail(picture.name)">Thumbnail</button>
+              <button v-on:click.prevent="useThumbnail(picture.name)">Thumbnail</button>
             </li>
           </ul>
           <div class="clearfix"></div>
         </div>
       </form>
-      <p><strong>content:</strong></p>
+      <label>Content</label>
       <p>
-        <vue-ckeditor
-          v-model.lazy="blog.content"
-          :config="config"
-          @blur="onBlur($event)"
-          @focus="onFocus($event)"
-        />
+        <vue-ckeditor v-model.lazy="blog.content" :config="config" @blur="onBlur($event)" @focus="onFocus($event)" />
       </p>
-
-      <p>category: <input type="text" v-model="blog.category" /></p>
-      <p>status: <input type="text" v-model="blog.status" /></p>
-      <p><button type="submit">create blog</button></p>
+      <label>ColorTone</label>
+      <input type="text" v-model="blog.category" />
+      <label>Status</label>
+      <input type="text" v-model="blog.status" />
+      <button type="submit" class="btn btn-success createuser">create Cafe</button>
+      <button v-on:click="navigateTo('/blogs')" class="btn btn-warning createuser">Cancel</button>
+    
     </form>
   </div>
 </template>
@@ -292,10 +279,10 @@ export default {
         }
       }
     },
-	useThumbnail(filename){
-		console.log(filename)
-		this.blog.thumbnail = filename
-	}
+    useThumbnail(filename) {
+      console.log(filename)
+      this.blog.thumbnail = filename
+    }
   },
   created() {
     this.reset();
@@ -321,32 +308,39 @@ export default {
 </script>
 <style scoped>
 .dropbox {
-  outline: 2px dashed grey; /* the dash box */
+  outline: 2px dashed grey;
+  /* the dash box */
   outline-offset: -10px;
   background: lemonchiffon;
   color: dimgray;
   padding: 10px 10px;
-  min-height: 200px; /* minimum height */
+  min-height: 200px;
+  /* minimum height */
   position: relative;
   cursor: pointer;
 }
 
 .input-file {
-  opacity: 0; /* invisible but it's there! */
+  opacity: 0;
+  /* invisible but it's there! */
   width: 100%;
   height: 200px;
   position: absolute;
   cursor: pointer;
 }
+
 .dropbox:hover {
-  background: khaki; /* when mouse over to the drop zone, change color
+  background: khaki;
+  /* when mouse over to the drop zone, change color
     */
 }
+
 .dropbox p {
   font-size: 1.2em;
   text-align: center;
-  padding: 50px 0;
+  padding: 0px 0;
 }
+
 ul.pictures {
   list-style: none;
   padding: 0;
@@ -355,17 +349,89 @@ ul.pictures {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
 ul.pictures li {
   float: left;
 }
+
 ul.pictures li img {
   max-width: 180px;
   margin-right: 20px;
 }
+
 .clearfix {
   clear: both;
 }
-.thumbnail-pic img{
-	width:200px
+
+.thumbnail-pic img {
+  width: 200px
+}
+
+.box {
+  padding: 5px;
+  border: 2px solid gray;
+
+}
+
+.cafe {
+  margin-top: 10px;
+}
+
+.createcafe {
+  margin: 10px;
+  margin-top: 10px;
+  margin-left: 100px;
+}
+
+input[type=text],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=password],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+label {
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.createuser {
+  margin-top: 20px;
 }
 </style>

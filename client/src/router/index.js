@@ -13,11 +13,6 @@ import BlogCreate from '@/components/Blogs/CreateBlog'
 import BlogEdit from '@/components/Blogs/EditBlog'
 import BlogShow from '@/components/Blogs/ShowBlog'
 
-import CafeIndex from '@/components/Cafes/Index'
-import CafeCreate from '@/components/Cafes/CreateCafe'
-import CafeEdit from '@/components/Cafes/EditCafe'
-import CafeShow from '@/components/Cafes/ShowCafe'
-
 import CommentIndex from '@/components/Comments/Index'
 
 import Upload from '@/components/Utils/Upload'
@@ -52,27 +47,6 @@ export default new Router({
       name: 'login',
       component: Login
     },
-    //cafe
-    {
-      path: '/cafes',
-      name: 'cafes',
-      component: CafeIndex
-    },
-    {
-      path: '/cafe/create',
-      name: 'cafe-create',
-      component: CafeCreate
-    },{
-      path: '/cafe/edit/:cafeId',
-      name: 'cafe-edit',
-      component: CafeEdit
-    },
-    {
-      path: '/cafe/:cafeId',
-      name: 'cafe',
-      component: CafeShow
-    },
-    //blogs
     {
       path: '/blogs',
       name: 'blogs',
