@@ -1,7 +1,6 @@
 <template>
 	<div class="container cafe box">
 		<div class="blog-header">
-		<div v-for="place in places" v-bind:key="place.id" class="blog-list">
 			<!-- <p>id: {{ place.id }}</p> -->
 			<div class="blog-pic">
 				<p class="h1 center">{{place.placename}}</p>
@@ -10,13 +9,13 @@
 		<div v-html="place.content.slice()"></div>
 		<div class="blog-info">
 			<p><strong>Theme:</strong> {{ place.theme }}</p>
+			<p><strong>Status:</strong> {{ place.status }}</p>
 			<button v-on:click="navigateTo('/place/edit/' + place.id)" class="btn btn-success">
 				Edit Cafe
 			</button>
 			<button v-on:click="navigateTo('/places')" class="btn btn-warning">Back</button>
 		</div>
 		</div>
-	</div>
 </template>
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -41,30 +40,6 @@ export default {
 			console.log('search: ' + this.search)
 			this.$router.push(route)
 		}, 700),
-		'$route.query.search': {
-			immediate: true,
-			async handler(value) {
-				this.places = []
-				this.results = []
-				this.loading = true
-				this.results = (await PlaceService.index(value)).data
-				this.appendResults()
-				this.results.forEach(place => {
-					if (this.theme.length > 0) {
-						console.log(this.theme.indexOf(place.theme))
-						if (this.theme.indexOf(place.theme) === -1) {
-							this.theme.push(place.theme)
-						}
-					} else {
-
-						this.theme.push(place.theme)
-					}
-				})
-				this.loading = false
-				this.search = value2
-				console.log(this.theme)
-			}
-		}
 	},
 	data() {
 		return {
@@ -74,7 +49,7 @@ export default {
 	async created() {
 		try {
 			let placeId = this.$route.params.placeId;
-			this.place = (await {PlaceService}.show(placeId)).data;
+			this.place = (await PlaceService.show(placeId)).data;
 		} catch (error) {
 			console.log(error);
 		}

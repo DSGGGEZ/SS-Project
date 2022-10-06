@@ -1,7 +1,7 @@
 <template>
 	<div class="container createcafe">
 		<div class="blog-header">
-			<p class="h1">Cafe Phitsanulok</p>
+			<p class="h1">Cafe in Phitsanulok</p>
 			<div>
 				<form class="form-inline form-search">
 					<div class="form-group">
@@ -12,7 +12,7 @@
 				</form>
 			</div>
 				<div class="create-blog ">
-				<button class="btn btn-success btn-sm sizetext" v-on:click="navigateTo('/place/create')"><p class="h5">Create Cafe</p></button>
+				<button class="btn btn-success btn-sm sizetext" v-on:click="navigateTo('/place/create')">Create Cafe</button>
 				<strong><p class="h6" >Cafe list:  {{results.length}}</p></strong>
 			</div>
 		</div>
