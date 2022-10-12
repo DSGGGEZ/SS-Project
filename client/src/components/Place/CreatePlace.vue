@@ -45,7 +45,7 @@
       <input type="text" v-model="place.status" />
       <button type="submit" class="btn btn-success createuser">create Cafe</button>
       <button v-on:click="navigateTo('/places')" class="btn btn-warning createuser">Cancel</button>
-    
+
     </form>
   </div>
 </template>

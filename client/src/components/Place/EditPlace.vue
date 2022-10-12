@@ -163,9 +163,6 @@ export default {
 		try {
 			let placeId = this.$route.params.placeId;
 			this.place = (await PlaceService.show(placeId)).data;
-
-
-			
 		} catch (error) {
 			console.log(error);
 		}
