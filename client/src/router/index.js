@@ -72,7 +72,7 @@ export default new Router({
       name: 'blog',
       component: BlogShow
     },
-    //Place
+    //Place route
     {
       path: '/places',
       name: 'places',
