@@ -72,7 +72,7 @@ export default new Router({
       name: 'blog',
       component: BlogShow
     },
-    //Place route
+    //Place router
     {
       path: '/places',
       name: 'places',
@@ -97,6 +97,7 @@ export default new Router({
       name: 'comments',
       component: CommentIndex
     },
+    //upload router
     {
       path: '/upload',
       name: 'upload',

@@ -29,19 +29,19 @@ module.exports = (app) => {
     app.get('/user/:userId', UserController.show)
     app.get('/users', isAuthenController, UserController.index)
     app.post('/login', UserAuthenController.login)
-    //blog
+    //blog route
     app.post('/blog', BlogController.create)
     app.put('/blog/:blogId', BlogController.put)
     app.delete('/blog/:blogId', BlogController.remove)
     app.get('/blog/:blogId', BlogController.show)
     app.get('/blogs', BlogController.index)
-    //place
+    //place route
     app.post('/place', PlaceController.create)
     app.put('/place/:placeId', PlaceController.put)
     app.delete('/place/:placeId', PlaceController.remove)
     app.get('/place/:placeId', PlaceController.show)
     app.get('/places', PlaceController.index)
-    //upload
+    //upload route
     app.post('/upload', function (req, res) {
         upload(req, res, function (err) {
             // isUserAuthenicated,
